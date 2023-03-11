@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Copy } from 'react-feather'
+import { generatePrompts } from '../../apis/twitter';
 import TwitterCard from '../TwitterCard/TwitterCard'
 
 import styles from './TwitterPage.module.css'
 
 function TwitterPage () {
+
+    useEffect(() => {
+        // generatePrompts("Space ");
+    }, []);
+
     return (
         <div className={styles.container}>
 
