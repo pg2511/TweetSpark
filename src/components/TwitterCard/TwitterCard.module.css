@@ -69,7 +69,7 @@
     height: 28px;
     width: 28px;
     border-radius: 50%;
-    background: conic-gradient(#55acee 90deg, #f0f0f0 0deg);
+    background: conic-gradient(var(--color) var(--deg), #f0f0f0 0deg);
     padding: 3px;
     display: flex;
     justify-content: center;
