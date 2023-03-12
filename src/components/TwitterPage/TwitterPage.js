@@ -22,6 +22,13 @@ function TwitterPage () {
         image: false,
     });
 
+
+    const handleCopy = async (text) => {
+        if (window.navigator?.clipboard?.writeText)
+          await window.navigator.clipboard.writeText(text);
+    };
+
+      
     const handlePromptGeneration = async () => {
         if(!promptInput.trim()) {
             setErrorMessages((prev) => ({
@@ -88,7 +95,7 @@ function TwitterPage () {
                         <div className={styles.prompt} key={item}>
                             <p className={styles.text}>{item}</p>
                             <div className={styles.bottom}> 
-                                <div className='icon'>
+                                <div className='icon' onClick={() => handleCopy(item)}>
                                     <Copy />
                                 </div>
                             </div>
