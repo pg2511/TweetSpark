@@ -4,6 +4,7 @@ import { Copy } from "react-feather";
 import TwitterCard from "../TwitterCard/TwitterCard";
 
 import {
+  generateImageForTweet,
   generatePrompts,
   generateThread,
 } from "../../apis/twitter";
@@ -62,6 +63,33 @@ function TwitterPage() {
     setThread(tempThread);
   };
 
+  const handleImageGeneration = async () => {
+    if (thread.length == 0 || disabledButtons.image) return;
+    setErrorMessages((prev) => ({
+      ...prev,
+      image: "",
+    }));
+
+    const tempThread = [...thread];
+    const firstTweet = tempThread[0].value;
+
+    setImageUrl("");
+    setDisabledButtons((prev) => ({ ...prev, image: true }));
+    const res = await generateImageForTweet(firstTweet);
+    setDisabledButtons((prev) => ({ ...prev, image: false }));
+
+    if (!res) {
+      setErrorMessages((prev) => ({
+        ...prev,
+        image:
+          "Unable to generate image, please try again. Make sure you are not generating a person specific image",
+      }));
+      return;
+    }
+
+    const url = res.data[0].url;
+    setImageUrl(url);
+  };
 
   const handleThreadGeneration = async () => {
     if (thread.length == 0 || disabledButtons.thread) return;
@@ -169,7 +197,31 @@ function TwitterPage() {
       <div className={styles.mainRight}>
         <p className={styles.heading}>Your tweets</p>
 
-        
+        <div className={styles.image}>
+          {imageUrl && <img src={imageUrl} alt="IMAGE" />}
+
+          {errorMessages.image ? (
+            <p className="error">{errorMessages.image}</p>
+          ) : (
+            ""
+          )}
+
+          {thread.filter((item) => item.value.trim()).length ? (
+            <div className={styles.buttons}>
+              <button
+                className="button"
+                onClick={handleImageGeneration}
+                disabled={disabledButtons.image}
+              >
+                {disabledButtons.image
+                  ? "Generating image..."
+                  : "Generate Image for your tweet"}
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
 
         {thread.length == 0 ? (
           <p
