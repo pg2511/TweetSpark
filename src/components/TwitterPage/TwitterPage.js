@@ -64,7 +64,7 @@ function TwitterPage() {
   };
 
   const handleImageGeneration = async () => {
-    if (thread.length == 0 || disabledButtons.image) return;
+    if (thread.length === 0 || disabledButtons.image) return;
     setErrorMessages((prev) => ({
       ...prev,
       image: "",
@@ -92,7 +92,7 @@ function TwitterPage() {
   };
 
   const handleThreadGeneration = async () => {
-    if (thread.length == 0 || disabledButtons.thread) return;
+    if (thread.length === 0 || disabledButtons.thread) return;
 
     const tempThread = [...thread];
     const lastTweet = tempThread.pop().value;
@@ -178,7 +178,7 @@ function TwitterPage() {
           <p className={styles.heading}>Suggested prompts</p>
           {disabledButtons.prompt ? (
             <p>Loading...</p>
-          ) : prompts.length == 0 ? (
+          ) : prompts.length === 0 ? (
             <p>No prompts to show, generate some new prompts. </p>
           ) : (
             prompts.map((item) => (
@@ -198,7 +198,7 @@ function TwitterPage() {
         <p className={styles.heading}>Your tweets</p>
 
         <div className={styles.image}>
-          {imageUrl && <img src={imageUrl} alt="IMAGE" />}
+          {imageUrl && <img src={imageUrl} alt="Image" />}
 
           {errorMessages.image ? (
             <p className="error">{errorMessages.image}</p>
@@ -223,7 +223,7 @@ function TwitterPage() {
           )}
         </div>
 
-        {thread.length == 0 ? (
+        {thread.length === 0 ? (
           <p
             className={styles.btn}
             onClick={() =>

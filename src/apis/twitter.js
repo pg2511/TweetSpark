@@ -1,4 +1,4 @@
-const oaiKey = "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";
+const apiKey = process.env.REACT_APP_OAIKEY;
 
 export const generatePrompts = async (prompt) => {
     try {
@@ -6,7 +6,7 @@ export const generatePrompts = async (prompt) => {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${oaiKey}`,
+          authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
           model: "text-davinci-003",
@@ -33,7 +33,7 @@ export const generateThread = async (tweet) => {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${oaiKey}`,
+          authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
           model: "text-davinci-003",
@@ -60,7 +60,7 @@ export const generateImageForTweet = async (tweet) => {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${oaiKey}`,
+          authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
           model: "text-davinci-003",
@@ -80,7 +80,7 @@ export const generateImageForTweet = async (tweet) => {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${oaiKey}`,
+          authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
           prompt: answer,
