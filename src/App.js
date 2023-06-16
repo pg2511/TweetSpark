@@ -1,12 +1,21 @@
 import React from 'react'
 import './App.css';
 import TwitterPage from './components/TwitterPage/TwitterPage';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   return (
-    <div className="App">
-      <TwitterPage />
-    </div>
+    <main>
+      <div className='main'>
+        <div className='gradient' />
+      </div>
+
+      <div className='app'>
+        <Navbar />
+        <TwitterPage />
+      </div>
+
+    </main>
   );
 }
 
